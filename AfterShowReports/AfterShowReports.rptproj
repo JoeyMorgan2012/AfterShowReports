@@ -5,6 +5,10 @@
   <DataSets />
   <Reports>
     <ProjectItem>
+      <Name>Top 50 Sales for New Products.rdl</Name>
+      <FullPath>Top 50 Sales for New Products.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>Top New Items by Qty Sold April 2017 Show.rdl</Name>
       <FullPath>Top New Items by Qty Sold April 2017 Show.rdl</FullPath>
     </ProjectItem>
@@ -13,8 +17,8 @@
       <FullPath>Top New Items by Sales April 2017 Show.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Top 50 Sales for New Products.rdl</Name>
-      <FullPath>Top 50 Sales for New Products.rdl</FullPath>
+      <Name>Ranked Sales for New Products.rdl</Name>
+      <FullPath>Ranked Sales for New Products.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>

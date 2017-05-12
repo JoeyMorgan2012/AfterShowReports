@@ -122,7 +122,7 @@ SELECT
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Top 50 Sales for New Products</Value>
+                    <Value>="Top 50 Ranked Sales for Products Introduced " + FormatDateTime(First(Fields!DateIntroduced.Value, "MasterTopFiftyDs"),DateFormat.GeneralDate) + " to " + FormatDateTime(Last(Fields!DateIntroduced.Value, "MasterTopFiftyDs"),DateFormat.GeneralDate)</Value>
                     <Style>
                       <FontFamily>Segoe UI Light</FontFamily>
                       <FontSize>24pt</FontSize>
