@@ -121,7 +121,7 @@ SELECT
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>="Ranked Sales for Products Introduced " + FormatDateTime(First(Fields!DateIntroduced.Value, "RankedNewProducts"),DateFormat.GeneralDate) + " to " + FormatDateTime(Last(Fields!DateIntroduced.Value, "RankedNewProducts"),DateFormat.GeneralDate)</Value>
+                    <Value>="Ranked Sales for Products Introduced " + FormatDateTime(Min(Fields!DateIntroduced.Value, "RankedNewProducts"),DateFormat.GeneralDate) + " to " + FormatDateTime(Max(Fields!DateIntroduced.Value, "RankedNewProducts"),DateFormat.GeneralDate)</Value>
                     <Style>
                       <FontFamily>Segoe UI Light</FontFamily>
                       <FontSize>14pt</FontSize>
@@ -469,12 +469,20 @@ SELECT
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
+                              <Style>None</Style>
                             </Border>
-                            <BottomBorder>
+                            <TopBorder>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </BottomBorder>
                             <FontFamily />
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>6pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -493,6 +501,16 @@ SELECT
                             <Border>
                               <Style>None</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
                           </Style>
                         </Image>
                       </CellContents>
@@ -522,12 +540,20 @@ SELECT
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
+                              <Style>None</Style>
                             </Border>
-                            <BottomBorder>
+                            <TopBorder>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </BottomBorder>
                             <FontFamily />
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>6pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -561,12 +587,20 @@ SELECT
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
+                              <Style>None</Style>
                             </Border>
-                            <BottomBorder>
+                            <TopBorder>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </BottomBorder>
                             <FontFamily />
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>6pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -600,12 +634,20 @@ SELECT
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
+                              <Style>None</Style>
                             </Border>
-                            <BottomBorder>
+                            <TopBorder>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </BottomBorder>
                             <FontFamily />
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>6pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -625,7 +667,6 @@ SELECT
                                 <TextRun>
                                   <Value>=Fields!UnitsSold.Value</Value>
                                   <Style>
-                                    <FontFamily />
                                     <FontSize>12pt</FontSize>
                                     <Format>N0</Format>
                                     <Color>#333333</Color>
@@ -641,12 +682,20 @@ SELECT
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
+                              <Style>None</Style>
                             </Border>
-                            <BottomBorder>
+                            <TopBorder>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </BottomBorder>
                             <FontFamily />
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>6pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -681,12 +730,20 @@ SELECT
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
+                              <Style>None</Style>
                             </Border>
-                            <BottomBorder>
+                            <TopBorder>
+                              <Color>Gray</Color>
                               <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </BottomBorder>
                             <FontFamily />
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>6pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
