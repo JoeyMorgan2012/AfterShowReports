@@ -7,14 +7,13 @@
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString>Data Source=ELKBIO;Initial Catalog=ELK_DATA</ConnectString>
-        <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
-      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>0feebecb-24dc-49a0-9b83-0c70e5dd5bba</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="SalesRankedByQty">
+    <DataSet Name="SalesRankedBySales">
       <Query>
         <DataSourceName>ELK_DM</DataSourceName>
         <QueryParameters>
@@ -23,7 +22,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandText>SELECT        Ranking, ImageUrl, ItemCode, ItemDescription, Brand, DateIntroduced, UnitsSold, SalesVolume,Price
-FROM            ShowItemsRankedByQty where ranking &lt;=50 and brand=@Brand</CommandText>
+FROM            ShowItemsRankedBySales where ranking &lt;=50 and brand=@Brand</CommandText>
       </Query>
       <Fields>
         <Field Name="Ranking">
@@ -255,48 +254,6 @@ ORDER BY Brand</CommandText>
                       <BreakLocation>Between</BreakLocation>
                     </PageBreak>
                   </Group>
-                  <TablixHeader>
-                    <Size>0.30903in</Size>
-                    <CellContents>
-                      <Textbox Name="Group1">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>=Int((RowNumber(Nothing))/5)</Value>
-                                <Style />
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Left</TextAlign>
-                            </Style>
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>Group1</rd:DefaultName>
-                        <Style>
-                          <Border>
-                            <Style>None</Style>
-                          </Border>
-                          <TopBorder>
-                            <Color>Gray</Color>
-                            <Style>Solid</Style>
-                            <Width>1pt</Width>
-                          </TopBorder>
-                          <BottomBorder>
-                            <Color>Gray</Color>
-                            <Style>Solid</Style>
-                            <Width>1pt</Width>
-                          </BottomBorder>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>12pt</PaddingTop>
-                          <PaddingBottom>12pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
                       <Group Name="Details" />
@@ -311,11 +268,11 @@ ORDER BY Brand</CommandText>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>SalesRankedByQty</DataSetName>
+            <DataSetName>SalesRankedBySales</DataSetName>
             <Top>0.12375in</Top>
             <Left>0.28in</Left>
             <Height>2.01042in</Height>
-            <Width>5.66667in</Width>
+            <Width>5.35764in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

@@ -7,21 +7,28 @@
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString>Data Source=ELKBIO;Initial Catalog=ELK_DATA</ConnectString>
-        <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
-      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>0feebecb-24dc-49a0-9b83-0c70e5dd5bba</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="AprilShowBySales">
+    <DataSet Name="SalesRankedByQty">
       <Query>
         <DataSourceName>ELK_DM</DataSourceName>
-        <CommandText>SELECT        Brand, ItemCode, ItemDescription, QtySold, Sales, Price, ImageUrl
-FROM            AprilBySales 
-ORDER BY Sales DESC</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Brand">
+            <Value>=Parameters!Brand.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT        Ranking, ImageUrl, ItemCode, ItemDescription, Brand, DateIntroduced, UnitsSold, SalesVolume,Price
+FROM            ShowItemsRankedByQty where ranking &lt;=50 and brand=@Brand</CommandText>
       </Query>
       <Fields>
+        <Field Name="Ranking">
+          <DataField>Ranking</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
         <Field Name="Brand">
           <DataField>Brand</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -34,35 +41,34 @@ ORDER BY Sales DESC</CommandText>
           <DataField>ItemDescription</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="QtySold">
-          <DataField>QtySold</DataField>
+        <Field Name="DateIntroduced">
+          <DataField>DateIntroduced</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UnitsSold">
+          <DataField>UnitsSold</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Sales">
-          <DataField>Sales</DataField>
+        <Field Name="ImageUrl">
+          <DataField>ImageUrl</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SalesVolume">
+          <DataField>SalesVolume</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="Price">
           <DataField>Price</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="ImageUrl">
-          <DataField>ImageUrl</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Brands">
       <Query>
         <DataSourceName>ELK_DM</DataSourceName>
-        <CommandText>WITH brands AS (SELECT        Brand
-                                      FROM            AprilByQty AS abq
-                                      UNION
-                                      SELECT        Brand
-                                      FROM            AprilBySales AS abs)
-    SELECT DISTINCT Brand
-     FROM            brands AS brands_1
-     ORDER BY Brand</CommandText>
+        <CommandText>SELECT DISTINCT Brand
+FROM            ShowSpecificOrdersAndInvoices
+ORDER BY Brand</CommandText>
       </Query>
       <Fields>
         <Field Name="Brand">
@@ -80,67 +86,20 @@ ORDER BY Sales DESC</CommandText>
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.26042in</Width>
+                  <Width>2.30382in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.01042in</Width>
+                  <Width>3.05382in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.33334in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Brand1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!Brand.Value + " Top New Items By Sales April 2017"</Value>
-                                  <Style>
-                                    <FontSize>12pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Brand1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BottomBorder>
-                              <Color>Black</Color>
-                              <Style>Double</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>2</ColSpan>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>2.13542in</Height>
+                  <Height>2.01042in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox3">
                           <CanGrow>true</CanGrow>
-                          <CanShrink>true</CanShrink>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -238,11 +197,10 @@ ORDER BY Sales DESC</CommandText>
                               <Style>Solid</Style>
                               <Width>1pt</Width>
                             </BottomBorder>
-                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
+                            <PaddingTop>12pt</PaddingTop>
+                            <PaddingBottom>12pt</PaddingBottom>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -269,8 +227,8 @@ ORDER BY Sales DESC</CommandText>
                             </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
+                            <PaddingTop>12pt</PaddingTop>
+                            <PaddingBottom>12pt</PaddingBottom>
                           </Style>
                         </Image>
                       </CellContents>
@@ -288,56 +246,48 @@ ORDER BY Sales DESC</CommandText>
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="Brand">
+                  <Group Name="SetOfFive">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!Brand.Value</GroupExpression>
+                      <GroupExpression>=Int((RowNumber(Nothing))/5)</GroupExpression>
                     </GroupExpressions>
                     <PageBreak>
                       <BreakLocation>Between</BreakLocation>
-                      <ResetPageNumber>true</ResetPageNumber>
                     </PageBreak>
-                    <PageName>=Fields!Brand.Value + " Top New Items by Sales"</PageName>
                   </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!Brand.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
                   <TablixMembers>
                     <TablixMember>
-                      <HideIfNoRows>true</HideIfNoRows>
-                      <KeepWithGroup>After</KeepWithGroup>
-                      <RepeatOnNewPage>true</RepeatOnNewPage>
-                    </TablixMember>
-                    <TablixMember>
                       <Group Name="Details" />
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!UnitsSold.Value</Value>
+                          <Direction>Descending</Direction>
+                        </SortExpression>
+                      </SortExpressions>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <KeepTogether>true</KeepTogether>
-            <DataSetName>AprilShowBySales</DataSetName>
-            <Top>0.32167in</Top>
-            <Left>1.20708in</Left>
-            <Height>2.46876in</Height>
-            <Width>5.27084in</Width>
+            <DataSetName>SalesRankedByQty</DataSetName>
+            <Top>0.12375in</Top>
+            <Left>0.28in</Left>
+            <Height>2.01042in</Height>
+            <Width>5.35764in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Top</VerticalAlign>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.10292in</Height>
+        <Height>2.33209in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>7.76958in</Width>
+      <Width>6.0925in</Width>
       <Page>
         <PageFooter>
           <Height>0.39583in</Height>
@@ -372,7 +322,7 @@ ORDER BY Sales DESC</CommandText>
               <Top>0.05556in</Top>
               <Left>2.60292in</Left>
               <Height>0.25in</Height>
-              <Width>5.09375in</Width>
+              <Width>3.34375in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -429,10 +379,30 @@ ORDER BY Sales DESC</CommandText>
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Brand">
+      <DataType>String</DataType>
+      <Prompt>Brand</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Brands</DataSetName>
+          <ValueField>Brand</ValueField>
+          <LabelField>Brand</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Brand</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <Language>en-US</Language>
